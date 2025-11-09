@@ -1,0 +1,29 @@
+Task: "multitask" # options: "classification", "segmentation", "multitask", ensemble
+
+Model Selection: "Auto" # options: "Auto", "Manual"
+
+Thresholds:
+  ResNet50: 500
+  ResNet101: 800
+  convnext_tiny: 100
+  convnext_small: 200
+  LSTM_default: 200
+  Transformer_default: 500
+
+Image model:
+  base: "CNN"
+  CNN:
+    selected: "ResNet50"
+    models: ["ResNet50", "ResNet101", "EfficientNet-B4", "EfficientNet-B5", "EfficientNet-B6", "EfficientNet-B7"]
+  ConvNeXt:
+    selected: "tiny"
+    models: ["tiny", "small", "base", "large", "ConvNeXt"]
+
+Timeseries model:
+  base: "LSTM"
+  LSTM:
+    selected: "default"
+    models: ["default"]
+  Transformer:
+    selected: "default"
+    models: ["small", "base", "large", "huge", "xl", "xxl"]
