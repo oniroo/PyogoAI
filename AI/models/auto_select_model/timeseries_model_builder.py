@@ -1,5 +1,6 @@
 from timeseries_classifier import LSTMClassifier, TransformerClassifier
 
+# noinspection PyUnusedLocal
 def build_timeseries_model(base, selected, num_classes, input_size=10):
     if base == "LSTM":
         return LSTMClassifier(input_size=input_size, hidden_size=64, num_layers=2, num_classes=num_classes)
