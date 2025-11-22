@@ -1,4 +1,4 @@
-from hardware.actuatortor.base_activator import BaseActivator
+from hardware.actuator.base_activator import BaseActivator
 
 class FanActivator(BaseActivator):
     is_activated: bool = None
@@ -14,13 +14,13 @@ class FanActivator(BaseActivator):
             raise ValueError("Fan Activator must have co2_condition")
 
     def activate(self):
-        print(f"Should vantilate: {self.co2_condition}")
-        print("Activating vantilating...")
+        print(f"Should ventilate: {self.co2_condition}")
+        print("Activating ventilating...")
         # 센서 연결하고 실제 로직 추가
         self.is_activated = True
 
     def deactivate(self):
-        print(f"Should vantilate: {self.co2_condition}")
-        print("Deactivating vantilating...")
+        print(f"Should ventilate: {self.co2_condition}")
+        print("Deactivating ventilating...")
         # 센서 연결하고 실제 로직 추가
         self.is_activated = False
