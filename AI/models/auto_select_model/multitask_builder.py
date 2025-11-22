@@ -7,6 +7,7 @@ def build_multitask_models(cfg, num_classes_img, num_classes_ts, input_size_ts=1
     # 이미지 모델 후보
     for name in cfg["Image model"]["CNN"]["models"]:
         subcfg = {"Image model": {"base": "CNN", "CNN": {"selected": name}}}
+        # noinspection PyBroadException
         try:
             m = build_image_model(subcfg, num_classes_img)
             models.append(m)
@@ -16,6 +17,7 @@ def build_multitask_models(cfg, num_classes_img, num_classes_ts, input_size_ts=1
 
     for name in cfg["Image model"]["ConvNeXt"]["models"]:
         subcfg = {"Image model": {"base": "ConvNeXt", "ConvNeXt": {"selected": name}}}
+        # noinspection PyBroadException
         try:
             m = build_image_model(subcfg, num_classes_img)
             models.append(m)
