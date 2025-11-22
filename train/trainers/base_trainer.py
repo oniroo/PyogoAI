@@ -1,10 +1,15 @@
+import torch
+
 class BaseTrainer:
-    def __init__(self, model, datamodule, optimizer, loss_fn, device='cpu'):
-        self.model = model.to(device)
+    def __init__(self, model, datamodule, optimizer, loss_fn, device=None):
+        if device is None:
+            device = 'cuda' if torch.cuda.is_available() else 'cpu'
+        self.device = torch.device(device)
+
+        self.model = model.to(self.device)
         self.dm = datamodule
         self.optim = optimizer
         self.loss_fn = loss_fn
-        self.device = device
 
     def train_one_epoch(self):
         self.model.train()
