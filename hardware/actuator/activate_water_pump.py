@@ -1,4 +1,4 @@
-from hardware.actuatortor.base_activator import BaseActivator
+from hardware.actuator.base_activator import BaseActivator
 
 class WaterPumpActivator(BaseActivator):
     is_activated: bool = False

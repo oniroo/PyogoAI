@@ -6,7 +6,7 @@ r"""
 from abc import ABC, abstractmethod
 
 class BaseActivator(ABC):
-    codition: bool # 실행 조건
+    condition: bool # 실행 조건
 
     def __init__(self, condition):
         self.condition = condition
