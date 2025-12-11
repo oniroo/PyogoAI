@@ -34,5 +34,5 @@ class TimeSeriesDataSet:
     freq: str               # 'H', 'D', 'M' 등
     input_dim: int          # D_in
     output_dim: int         # D_out
-    hoirizon: int           # 예측 길이
+    horizon: int           # 예측 길이
     is_multivariable: bool  # 다변량 여부
