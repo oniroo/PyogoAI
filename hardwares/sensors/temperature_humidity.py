@@ -1,9 +1,10 @@
-import time
 import asyncio
+import time
+
 from smbus2 import SMBus
 
-from hardwares.interfaces.Sensor import Sensor
 from hardwares.enums import SensorType
+from hardwares.interfaces.Sensor import Sensor
 from hardwares.sensors.utils.json_save_load import save_json, load_json
 
 I2C_BUS = 1
@@ -27,33 +28,31 @@ class TemperatureAndHumidity(Sensor):
             self.bus = None
         self.enabled = False
 
+    def load(self) -> dict:
+        return load_json(sensor_type=self.type)
+
+    @property
     async def read(self) -> dict:
         """
         Reads temperature and humidity from SHT31 sensor via I2C.
         Blocking I2C operations are offloaded to a thread executor.
         """
-        if not self.enabled:
-            self.enable()
 
         loop = asyncio.get_running_loop()
 
-        await loop.run_in_executor(
-            None,
-            self.bus.write_i2c_block_data,
-            SHT31_ADDRESS,
-            0x24,
-            [0x00]
-        )
+        await loop.run_in_executor(None,
+                                   self.bus.write_i2c_block_data,
+                                   SHT31_ADDRESS,
+                                   0x24,
+                                   [0x00])
 
         await asyncio.sleep(0.015)
 
-        data = await loop.run_in_executor(
-            None,
-            self.bus.read_i2c_block_data,
-            SHT31_ADDRESS,
-            0x00,
-            6
-        )
+        data = await loop.run_in_executor(None,
+                                          self.bus.read_i2c_block_data,
+                                          SHT31_ADDRESS,
+                                          0x00,
+                                          6)
 
         raw_temperature = (data[0] << 8) | data[1]
         raw_humidity = (data[3] << 8) | data[4]
@@ -67,9 +66,5 @@ class TemperatureAndHumidity(Sensor):
             "timestamp": time.time()
         }
 
-    async def save(self):
-        data = await self.read()
+    async def save(self, data: dict):
         save_json(sensor_type=self.type, sensor_data=data)
-
-    def load(self) -> dict:
-        return load_json(sensor_type=self.type)

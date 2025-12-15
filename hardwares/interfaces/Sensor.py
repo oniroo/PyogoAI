@@ -3,11 +3,11 @@ from abc import ABC, abstractmethod
 
 class Sensor(ABC):
     @abstractmethod
-    def read(self) -> dict:
+    async def read(self) -> dict:
         raise NotImplementedError
 
     @abstractmethod
-    def save(self):
+    async def save(self, data: dict):
         raise NotImplementedError
 
     @abstractmethod

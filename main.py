@@ -1,4 +1,5 @@
 import asyncio
+
 from hardwares.sensors import TemperatureAndHumidity
 
 
@@ -7,7 +8,7 @@ async def main():
 
     try:
         while True:
-            data = await temp_hum_sensor.read()
+            data = await temp_hum_sensor.read
             print(data)
             await asyncio.sleep(1)
 

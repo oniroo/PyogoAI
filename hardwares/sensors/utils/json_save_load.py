@@ -1,8 +1,8 @@
 import json
 import os
+
 from hardwares.enums import SensorType
 
-# 프로젝트 루트 기준으로 data 폴더 생성
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 SAVE_DIR = os.path.join(BASE_DIR, "data")
 os.makedirs(SAVE_DIR, exist_ok=True)
