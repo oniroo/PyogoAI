@@ -1,0 +1,10 @@
+# IDE Files (PyCharm, IntelliJ, etc.)
+.idea/
+
+# 가상 환경(Virtual Environment) 폴더
+#venv/
+#.venv/
+
+# Python 임시/캐시 파일
+__pycache__/
+*.pyc
